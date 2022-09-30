@@ -1,0 +1,9 @@
+scrape_configs:
+  - job_name: 'application'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['application:8080']
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: http_server_requests_seconds_count
+        action: keep
